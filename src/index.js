@@ -29,6 +29,9 @@ var someData = d3.nest()
     .append("div")
     .style("position", "absolute")
     .style("z-index", "10")
+    .style("background-color", "white")
+    .style("border", "1px solid black")
+    .style("padding", "2px")
     .style("visibility", "hidden");
 
     let arcData = pieGenerator(someData);
@@ -39,23 +42,30 @@ var someData = d3.nest()
 
     console.log(arcData);
 
+    var stdColor = "orange";
+    var hltColor = "red";
     svg 
     .selectAll('path')
     .data(arcData)
 .enter()
     .append('path')
-    .style('fill', 'orange')
+    .style('fill', stdColor)
     .style('stroke', 'white')
     .attr('d', arcGenerator)
     .on("mouseover", function(d) {
+        d3.select(this).style("fill", hltColor);
         return tooltip.style("visibility", "visible")
           .text(() => `year: 19${d.data.key} avg mpg: ${d.value.toFixed(2)}`);
     })
     .on("mousemove", function(d) {
+        d3.select(this).style("fill", hltColor);
         return tooltip
             .style("top", (d3.event.pageY-10) + "px")
             .style("left", (d3.event.pageX+10) + "px");
         
     })
-    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+    .on("mouseout", function(){
+        d3.select(this).style("fill", stdColor);
+        return tooltip.style("visibility", "hidden");
+    });
 
