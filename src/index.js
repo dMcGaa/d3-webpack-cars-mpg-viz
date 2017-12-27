@@ -4,7 +4,15 @@ import data from './data/car-data';
 console.log("bundle working");
 console.log(data);
 
-let svg = d3.select('svg#pie g')
+var width = 400;
+var height = 220;
+
+let svg = d3.select('svg#graph')
+  .attr("width", width)
+  .attr("height", height)
+  .append("g")
+  .attr("transform", `translate( ${width / 2}, ${height / 2})`)
+
 let reduceMpg = (arr) => {
     let acc = {avgMpg: 0, numCars: 1};
     //console.log(arr[0]["model year"]);

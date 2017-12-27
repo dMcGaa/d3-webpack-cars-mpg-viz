@@ -1,7 +1,6 @@
 # D3 car data
 ## Tooltip 
 Stackoverflow solution: https://stackoverflow.com/questions/10805184/show-data-on-mouseover-of-circle
-
 append div: 
 ```
 var tooltip = d3.select("body")
